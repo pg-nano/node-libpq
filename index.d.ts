@@ -170,6 +170,18 @@ declare class Libpq extends EventEmitter {
     ftype(fieldNumber: number): number;
 
     /**
+     * Retrieve the Oid of the table at the given offset. Offset starts at 0.
+     */
+    ftable(fieldNumber: number): number;
+
+    /**
+     * Retrieve the column number (within its table) of the field at the given offset.
+     * Offset starts at 0. Query-result column numbers start at 0, but table columns have
+     * nonzero numbers.
+     */
+    ftablenum(fieldNumber: number): number;
+
+    /**
      * After issuing a successfuly command like COPY table TO stdout gets copy data from the
      * connection.
      *
@@ -283,6 +295,16 @@ declare class Libpq extends EventEmitter {
     prepare(statementName: string, commandText: string, nParams: number): void;
 
     /**
+     * (sync) Sends a command to the server to describe a previously prepared statement.
+     * Blocks until the results are returned. Use {@link Libpq.nparams} and {@link Libpq.paramtype}
+     * to obtain information about the parameters and {@link Libpq.nfields}, {@link Libpq.fname},
+     * and {@link Libpq.ftype} about the result columns of the prepared statement.
+     *
+     * @param statementName a required string of the name of the prepared statement.
+     */
+    describePrepared(statementName: string): void;
+
+    /**
      * Retrieves detailed error information from the current result object. Very similar to
      * PQresultErrorField() except instead of passing a fieldCode and retrieving a single field,
      * retrieves all fields from the error at once on a single object. The object returned is a
@@ -307,6 +329,16 @@ declare class Libpq extends EventEmitter {
      * the last executed command.
      */
     resultStatus(): string;
+
+    /**
+     * Returns the number of parameters a prepared statement expects.
+     */
+    nparams(): number;
+
+    /**
+     * Returns the Oid of the prepared statement's parameter at the given offset.
+     */
+    paramtype(paramNumber: number): number;
 
     /**
      * (async) Sends a query to the server to be processed.
