@@ -14,6 +14,7 @@
   },
   "scripts": {
     "clean": "node-gyp clean",
+    "prepare": "node-gyp rebuild || true && cd build && compiledb make -f Makefile -n",
     "pretest": "node-gyp rebuild",
     "test": "node_modules/.bin/mocha"
   },
