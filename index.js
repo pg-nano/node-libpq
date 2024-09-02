@@ -86,8 +86,6 @@ PQ.prototype.execParams = function (commandText, parameters) {
   if (!parameters) {
     parameters = [];
   }
-
-  assert(Array.isArray(parameters), 'Parameters must be an array');
   this.$execParams(commandText, parameters);
 };
 
@@ -97,7 +95,6 @@ PQ.prototype.execParams = function (commandText, parameters) {
 //returns false if there was an error
 //consume additional error details via PQ#errorMessage & friends
 PQ.prototype.prepare = function (statementName, commandText, nParams) {
-  assert.equal(arguments.length, 3, 'Must supply 3 arguments');
   if (!statementName) {
     statementName = '';
   }
@@ -120,7 +117,6 @@ PQ.prototype.execPrepared = function (statementName, parameters) {
   if (!parameters) {
     parameters = [];
   }
-  assert(Array.isArray(parameters), 'Parameters must be an array');
   this.$execPrepared(statementName, parameters);
 };
 
@@ -152,14 +148,12 @@ PQ.prototype.sendQueryParams = function (commandText, parameters) {
   if (!parameters) {
     parameters = [];
   }
-  assert(Array.isArray(parameters), 'Parameters must be an array');
   return this.$sendQueryParams(commandText, parameters);
 };
 
 //send a command to prepare a named query in async mode
 //returns true if sent, or false if there was a send failure
 PQ.prototype.sendPrepare = function (statementName, commandText, nParams) {
-  assert.equal(arguments.length, 3, 'Must supply 3 arguments');
   if (!statementName) {
     statementName = '';
   }
@@ -179,7 +173,6 @@ PQ.prototype.sendQueryPrepared = function (statementName, parameters) {
   if (!parameters) {
     parameters = [];
   }
-  assert(Array.isArray(parameters), 'Parameters must be an array');
   return this.$sendQueryPrepared(statementName, parameters);
 };
 
@@ -358,7 +351,6 @@ PQ.prototype.notifies = function () {
 //returns 0 if the command would block (use PQ#writable here if so)
 //returns -1 if there was an error
 PQ.prototype.putCopyData = function (buffer) {
-  assert(buffer instanceof Buffer);
   return this.$putCopyData(buffer);
 };
 
