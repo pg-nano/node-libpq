@@ -1,5 +1,5 @@
 {
-  "name": "libpq",
+  "name": "@pg-nano/libpq",
   "version": "1.8.13",
   "description": "Low-level native bindings to PostgreSQL libpq",
   "type": "module",
