@@ -13,9 +13,10 @@
   },
   "scripts": {
     "clean": "node-gyp clean",
-    "prepare": "node-gyp rebuild || true && cd build && compiledb make -f Makefile -n",
+    "prepare": "node-gyp rebuild || true && pnpm -s clangd:init",
     "pretest": "pnpm -s prepare",
-    "test": "node_modules/.bin/mocha"
+    "test": "node_modules/.bin/mocha",
+    "clangd:init": "cd build && compiledb make -f binding.Makefile -n"
   },
   "author": "Brian M. Carlson",
   "license": "MIT",
