@@ -1,15 +1,8 @@
-var PQ = (module.exports = require('bindings')('addon.node').PQ);
-var assert = require('assert');
+import assert from "assert";
+import bindings from "bindings";
+import { EventEmitter } from "events";
 
-//print out the include dir
-//if you want to include this in a binding.gyp file
-if (!module.parent) {
-  var path = require('path');
-  console.log(path.normalize(__dirname + '/src'));
-}
-
-var EventEmitter = require('events').EventEmitter;
-var assert = require('assert');
+var { PQ } = bindings('addon.node');
 
 for (var key in EventEmitter.prototype) {
   PQ.prototype[key] = EventEmitter.prototype[key];
@@ -41,6 +34,7 @@ PQ.prototype.connect = function (paramString, cb) {
   if (!paramString) {
     paramString = '';
   }
+
   assert(cb, 'Must provide a connection callback');
   if (process.domain) {
     cb = process.domain.bind(cb);
@@ -126,7 +120,6 @@ PQ.prototype.execPrepared = function (statementName, parameters) {
   if (!parameters) {
     parameters = [];
   }
-
   assert(Array.isArray(parameters), 'Parameters must be an array');
   this.$execPrepared(statementName, parameters);
 };
@@ -134,8 +127,8 @@ PQ.prototype.execPrepared = function (statementName, parameters) {
 //SYNC describes a named, prepared query and stores the result
 //immediately stores the results within the PQ object for consumption with
 //nparams, paramtype, nfields, etc...
-PQ.prototype.describePrepared = function(statementName) {
-  if(!statementName) {
+PQ.prototype.describePrepared = function (statementName) {
+  if (!statementName) {
     statementName = '';
   }
   this.$describePrepared(statementName);
@@ -159,7 +152,6 @@ PQ.prototype.sendQueryParams = function (commandText, parameters) {
   if (!parameters) {
     parameters = [];
   }
-
   assert(Array.isArray(parameters), 'Parameters must be an array');
   return this.$sendQueryParams(commandText, parameters);
 };
@@ -187,7 +179,6 @@ PQ.prototype.sendQueryPrepared = function (statementName, parameters) {
   if (!parameters) {
     parameters = [];
   }
-
   assert(Array.isArray(parameters), 'Parameters must be an array');
   return this.$sendQueryPrepared(statementName, parameters);
 };
@@ -241,12 +232,12 @@ PQ.prototype.fname = function (offset) {
 };
 
 //returns the Oid of the table of the field at the given offset
-PQ.prototype.ftable = function(offset) {
+PQ.prototype.ftable = function (offset) {
   return this.$ftable(offset);
 };
 
 //returns the column number (within its table) of the field at the given offset
-PQ.prototype.ftablecol = function(offset) {
+PQ.prototype.ftablecol = function (offset) {
   return this.$ftablecol(offset);
 };
 
@@ -268,12 +259,12 @@ PQ.prototype.getisnull = function (row, col) {
 };
 
 //returns the number of parameters of a prepared statement
-PQ.prototype.nparams = function() {
+PQ.prototype.nparams = function () {
   return this.$nparams();
 };
 
 //returns the data type of the indicated statement parameter (starting from 0)
-PQ.prototype.paramtype = function(n) {
+PQ.prototype.paramtype = function (n) {
   return this.$paramtype(n);
 };
 
@@ -344,12 +335,14 @@ PQ.prototype.flush = function () {
 //escapes a literal and returns the escaped string
 //I'm not 100% sure this doesn't do any I/O...need to check that
 PQ.prototype.escapeLiteral = function (input) {
-  if (!input) return input;
+  if (!input)
+    return input;
   return this.$escapeLiteral(input);
 };
 
 PQ.prototype.escapeIdentifier = function (input) {
-  if (!input) return input;
+  if (!input)
+    return input;
   return this.$escapeIdentifier(input);
 };
 
@@ -396,3 +389,5 @@ PQ.prototype.getCopyData = function (async) {
 PQ.prototype.cancel = function () {
   return this.$cancel();
 };
+
+export default PQ;
