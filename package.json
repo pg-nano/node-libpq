@@ -13,7 +13,7 @@
   },
   "scripts": {
     "clean": "node-gyp clean",
-    "prepare": "node-gyp rebuild || true && pnpm -s clangd:init",
+    "postinstall": "[ -d .git ] && pnpm -s clangd:init || true",
     "pretest": "pnpm -s prepare",
     "test": "node_modules/.bin/mocha",
     "clangd:init": "cd build && compiledb make -f binding.Makefile -n"
