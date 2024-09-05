@@ -271,6 +271,13 @@ PQ.prototype.cmdTuples = function () {
   return this.$cmdTuples();
 };
 
+//Sets the connection to return results one row at a time
+//This should only be called immediately after a successful call to PQsendQuery
+//Returns true if successful, false if there was an error
+PQ.prototype.setSingleRowMode = function () {
+  return this.$setSingleRowMode();
+};
+
 //starts the 'read ready' libuv socket listener.
 //Once the socket becomes readable, the PQ instance starts
 //emitting 'readable' events.  Similar to how node's readable-stream

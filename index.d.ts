@@ -400,6 +400,13 @@ declare class Libpq extends EventEmitter {
     socket(): number;
 
     /**
+     * Sets the connection to return results one row at a time.
+     * This should only be called immediately after a successful call to PQsendQuery
+     * Returns true if successful, false if there was an error
+     */
+    setSingleRowMode(): boolean;
+
+    /**
      * This uses libuv to start a read watcher on the socket open to the backend. As soon as this
      * socket becomes readable the pq instance will emit a readable event. It is up to you to call
      * [[Libpq.consumeInput]] one or more times to clear this read notification or it will

@@ -41,6 +41,7 @@ class Connection : public Nan::ObjectWrap {
     static NAN_METHOD(GetResult);
     static NAN_METHOD(ConsumeInput);
     static NAN_METHOD(IsBusy);
+    static NAN_METHOD(SetSingleRowMode);
     static NAN_METHOD(StartRead);
     static NAN_METHOD(StopRead);
     static NAN_METHOD(StartWrite);

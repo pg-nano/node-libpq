@@ -523,6 +523,15 @@ NAN_METHOD(Connection::IsBusy) {
   info.GetReturnValue().Set(isBusy == 1);
 }
 
+NAN_METHOD(Connection::SetSingleRowMode) {
+  TRACE("Connection::SetSingleRowMode");
+
+  Connection* self = NODE_THIS();
+
+  int success = PQsetSingleRowMode(self->pq);
+  info.GetReturnValue().Set(success == 1);
+}
+
 NAN_METHOD(Connection::StartRead) {
   TRACE("Connection::StartRead");
 

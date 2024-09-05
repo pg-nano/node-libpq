@@ -31,6 +31,7 @@ NAN_MODULE_INIT(InitAddon) {
   Nan::SetPrototypeMethod(tpl, "$getResult", Connection::GetResult);
 
   //async i/o control functions
+  Nan::SetPrototypeMethod(tpl, "$setSingleRowMode", Connection::SetSingleRowMode);
   Nan::SetPrototypeMethod(tpl, "$startRead", Connection::StartRead);
   Nan::SetPrototypeMethod(tpl, "$stopRead", Connection::StopRead);
   Nan::SetPrototypeMethod(tpl, "$startWrite", Connection::StartWrite);
