@@ -78,7 +78,6 @@ declare class Libpq extends EventEmitter {
      *                            established.
      */
     connect(connectParams: string, callback: (err?: Error) => void): void;
-    connect(callback: (err?: Error) => void): void;
 
     /**
      * (sync) Attempts to connect to a PostgreSQL server. BLOCKS until it either succeedes, or

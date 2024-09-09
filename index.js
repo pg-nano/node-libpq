@@ -27,14 +27,7 @@ PQ.prototype.connectSync = function (paramString) {
 //calls the callback with an error if there was one
 PQ.prototype.connect = function (paramString, cb) {
   this.connected = true;
-  if (typeof paramString == 'function') {
-    cb = paramString;
-    paramString = '';
-  }
-  if (!paramString) {
-    paramString = '';
-  }
-
+  assert(paramString, 'Must provide a connection string');
   assert(cb, 'Must provide a connection callback');
   if (process.domain) {
     cb = process.domain.bind(cb);
