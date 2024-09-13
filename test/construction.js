@@ -1,5 +1,4 @@
 var PQ = require('../');
-var async = require('async');
 
 describe('Constructing multiple', function() {
   it('works all at once', function() {
@@ -8,11 +7,18 @@ describe('Constructing multiple', function() {
     }
   });
 
-  it('connects and disconnects each client', function(done) {
-    var connect = function(n, cb) {
-      var pq = new PQ();
-      pq.connect(cb);
+  it('connects and disconnects each client', async function() {
+    const connectPromise = (n) => {
+      return new Promise((resolve, reject) => {
+        const pq = new PQ();
+        pq.connect((err) => {
+          if (err) reject(err);
+          else resolve();
+        });
+      });
     };
-    async.times(30, connect, done);
+
+    const promises = Array.from({ length: 30 }, (_, i) => connectPromise(i));
+    await Promise.all(promises);
   });
 })

@@ -1,12 +1,9 @@
 var Libpq = require('../');
-var _ = require('lodash');
 var assert = require('assert');
 
 describe('connectSync', function() {
   it('works 50 times in a row', function() {
-    var pqs = _.times(50, function() {
-      return new Libpq();
-    });
+    var pqs = Array.from({ length: 50 }, () => new Libpq());
     pqs.forEach(function(pq) {
       pq.connectSync();
     });
@@ -21,9 +18,7 @@ describe('connectSync', function() {
 describe('connect async', function() {
   var total = 50;
   it('works ' + total + ' times in a row', function(done) {
-    var pqs = _.times(total, function() {
-      return new Libpq();
-    });
+    var pqs = Array.from({ length: total }, () => new Libpq());
 
     var count = 0;
     var connect = function(cb) {
