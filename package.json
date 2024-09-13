@@ -12,21 +12,27 @@
     "url": "git://github.com/pg-nano/node-libpq.git"
   },
   "scripts": {
-    "clean": "node-gyp clean",
-    "postinstall": "[ -d .git ] && pnpm -s clangd:init || true",
-    "pretest": "pnpm -s prepare",
-    "test": "node_modules/.bin/mocha",
-    "clangd:init": "cd build && compiledb make -f binding.Makefile -n"
+    "dev": "watchlist src --eager -- pnpm -s build",
+    "build": "node-gyp rebuild && pnpm --no-bail prepare:clangd",
+    "prepare": "pnpm -s build",
+    "prepare:clangd": "cd build && compiledb make -f binding.Makefile -n",
+    "install": "[ ! -d .git ] && prebuild-install --runtime napi || true",
+    "ci:prebuild": "prebuild --runtime napi --target 8 --strip --verbose",
+    "test": "node_modules/.bin/mocha"
   },
   "author": "Brian M. Carlson",
   "license": "MIT",
   "dependencies": {
     "bindings": "1.5.0",
-    "nan": "2.19.0"
+    "nan": "2.19.0",
+    "prebuild-install": "^7.1.2"
   },
   "devDependencies": {
     "buffer-from": "^1.1.1",
-    "mocha": "10.4.0"
+    "mocha": "10.4.0",
+    "node-gyp": "^10.0.1",
+    "prebuild": "^13.0.1",
+    "watchlist": "npm:@aleclarson/watchlist@^0.3.3"
   },
   "prettier": {
     "singleQuote": true
