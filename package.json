@@ -5,16 +5,8 @@
   "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
-  "keywords": [
-    "postgres",
-    "libpq"
-  ],
-  "files": [
-    "src",
-    "binding.gyp",
-    "index.d.ts",
-    "index.js"
-  ],
+  "keywords": ["postgres", "libpq"],
+  "files": ["src", "binding.gyp", "index.d.ts", "index.js"],
   "repository": {
     "type": "git",
     "url": "git://github.com/pg-nano/node-libpq.git"
@@ -22,8 +14,8 @@
   "scripts": {
     "dev": "watchlist src --eager -- pnpm -s build",
     "build": "node-gyp rebuild && pnpm --no-bail prepare:clangd",
-    "prepare": "pnpm -s build",
     "prepare:clangd": "cd build && compiledb make -f binding.Makefile -n",
+    "prepublishOnly": "pnpm -s build",
     "test": "mocha"
   },
   "author": "Brian M. Carlson",
