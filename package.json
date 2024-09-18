@@ -14,6 +14,7 @@
   "scripts": {
     "dev": "watchlist src --eager -- pnpm -s build",
     "build": "node-gyp rebuild && pnpm --no-bail prepare:clangd",
+    "postinstall": "node-gyp rebuild",
     "prepare:clangd": "cd build && compiledb make -f binding.Makefile -n",
     "prepublishOnly": "pnpm -s build",
     "test": "mocha"
