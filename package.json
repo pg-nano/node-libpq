@@ -3,25 +3,27 @@
   "version": "1.9.1",
   "description": "Low-level native bindings to PostgreSQL libpq",
   "type": "module",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "keywords": [
-    "postgres",
-    "libpq"
-  ],
-  "files": [
-    "src",
-    "binding.gyp",
-    "index.d.ts",
-    "index.js"
-  ],
+  "main": "lib/libpq.js",
+  "types": "lib/libpq.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/libpq.d.ts",
+      "import": "./lib/libpq.js"
+    }
+  },
+  "keywords": ["postgres", "libpq"],
+  "files": ["src", "binding.gyp", "index.d.ts", "index.js"],
   "repository": {
     "type": "git",
     "url": "git://github.com/pg-nano/node-libpq.git"
   },
   "scripts": {
-    "dev": "watchlist src --eager -- pnpm -s build",
-    "build": "node-gyp rebuild && pnpm --no-bail prepare:clangd",
+    "dev": "tinyrun --names js,gyp 'pnpm -s dev:js' 'pnpm -s dev:gyp'",
+    "dev:js": "rimraf lib && tsc -p . --watch --preserveWatchOutput",
+    "dev:gyp": "watchlist src --eager --no-clear -- pnpm -s build:gyp",
+    "build": "tinyrun --names js,gyp 'pnpm -s build:js' 'pnpm -s build:gyp'",
+    "build:js": "rimraf lib && tsc -p .",
+    "build:gyp": "node-gyp rebuild && pnpm --no-bail prepare:clangd",
     "postinstall": "node-gyp rebuild",
     "prepare:clangd": "cd build && compiledb make -f binding.Makefile -n",
     "prepublishOnly": "pnpm -s build",
@@ -31,12 +33,15 @@
   "license": "MIT",
   "dependencies": {
     "bindings": "1.5.0",
-    "nan": "2.19.0"
+    "nan": "2.19.0",
+    "strict-event-emitter-types": "^2.0.0"
   },
   "devDependencies": {
+    "@types/bindings": "^1.5.5",
     "buffer-from": "^1.1.1",
     "mocha": "10.4.0",
     "node-gyp": "^10.0.1",
+    "tinyrun": "^1.0.1",
     "watchlist": "npm:@aleclarson/watchlist@^0.3.3"
   },
   "prettier": {

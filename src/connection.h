@@ -12,10 +12,6 @@ class Connection : public Nan::ObjectWrap {
     static NAN_METHOD(Socket);
     static NAN_METHOD(GetLastErrorMessage);
     static NAN_METHOD(Finish);
-    static NAN_METHOD(Exec);
-    static NAN_METHOD(ExecParams);
-    static NAN_METHOD(Prepare);
-    static NAN_METHOD(ExecPrepared);
     static NAN_METHOD(DescribePrepared);
     static NAN_METHOD(Clear);
     static NAN_METHOD(Ntuples);
