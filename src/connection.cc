@@ -18,20 +18,6 @@ NAN_METHOD(Connection::Create) {
   info.GetReturnValue().Set(info.This());
 }
 
-NAN_METHOD(Connection::ConnectSync) {
-  TRACE("Connection::ConnectSync::begin");
-
-  Connection *self = Nan::ObjectWrap::Unwrap<Connection>(info.This());
-
-  self->Ref();
-  self->is_reffed = true;
-  bool success = self->ConnectDB(*Nan::Utf8String(info[0]));
-  if (success) {
-    self->InitPollSocket();
-  }
-  info.GetReturnValue().Set(success);
-}
-
 NAN_METHOD(Connection::Connect) {
   TRACE("Connection::Connect");
 

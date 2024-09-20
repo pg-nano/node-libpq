@@ -7,7 +7,6 @@
 class Connection : public Nan::ObjectWrap {
   public:
     static NAN_METHOD(Create);
-    static NAN_METHOD(ConnectSync);
     static NAN_METHOD(Connect);
     static NAN_METHOD(ServerVersion);
     static NAN_METHOD(Socket);

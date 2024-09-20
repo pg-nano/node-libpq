@@ -8,7 +8,6 @@ NAN_MODULE_INIT(InitAddon) {
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
   //connection initialization & management functions
-  Nan::SetPrototypeMethod(tpl, "$connectSync", Connection::ConnectSync);
   Nan::SetPrototypeMethod(tpl, "$connect", Connection::Connect);
   Nan::SetPrototypeMethod(tpl, "$finish", Connection::Finish);
   Nan::SetPrototypeMethod(tpl, "$getLastErrorMessage", Connection::GetLastErrorMessage);
