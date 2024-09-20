@@ -108,13 +108,13 @@ declare class Libpq extends EventEmitter {
      * Exact copy of the PQescapeIdentifier function within libpq. Requires an established
      * connection but does not perform any I/O.
      */
-    escapeIdentifier(input: string): string;
+    escapeIdentifier(input: string): string | null;
 
     /**
      * Exact copy of the PQescapeLiteral function within libpq. Requires an established connection
      * but does not perform any I/O.
      */
-    escapeLiteral(input: string): string;
+    escapeLiteral(input: string): string | null;
 
     /**
      * (sync) Sends a command to the backend and blocks until a result is received.
