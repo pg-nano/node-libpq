@@ -547,7 +547,8 @@ NAN_METHOD(Connection::SetNonBlocking) {
 
   Connection* self = NODE_THIS();
 
-  int ok = PQsetnonblocking(self->pq, Nan::To<int>(info[0]).FromJust());
+  auto flag = Nan::To<bool>(info[0]).FromJust();
+  int ok = PQsetnonblocking(self->pq, flag ? 1 : 0);
 
   info.GetReturnValue().Set(ok == 0);
 }
