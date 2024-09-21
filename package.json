@@ -1,6 +1,6 @@
 {
   "name": "@pg-nano/libpq",
-  "version": "1.9.1",
+  "version": "2.0.0",
   "description": "Low-level native bindings to PostgreSQL libpq",
   "type": "module",
   "main": "lib/libpq.js",
@@ -11,8 +11,16 @@
       "import": "./lib/libpq.js"
     }
   },
-  "keywords": ["postgres", "libpq"],
-  "files": ["src", "binding.gyp", "index.d.ts", "index.js"],
+  "keywords": [
+    "postgres",
+    "libpq"
+  ],
+  "files": [
+    "src",
+    "binding.gyp",
+    "index.d.ts",
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/pg-nano/node-libpq.git"
