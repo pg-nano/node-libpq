@@ -277,7 +277,7 @@ interface Libpq extends StrictEventEmitter<EventEmitter, LibpqEvents> {
   cancel(): true | string
 }
 
-const { PQ } = bindings('addon.node')
+const { PQ } = bindings('addon.node') as { PQ: new () => {} }
 
 class Libpq extends PQ {
   /**
