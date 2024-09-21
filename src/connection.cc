@@ -618,7 +618,7 @@ NAN_METHOD(Connection::Cancel) {
   PGcancel *cancelStuct = PQgetCancel(self->pq);
 
   if(cancelStuct == NULL) {
-    info.GetReturnValue().Set(Nan::Error("Unable to allocate cancel struct"));
+    info.GetReturnValue().Set(Nan::New("Unable to allocate cancel struct").ToLocalChecked());
     return;
   }
 

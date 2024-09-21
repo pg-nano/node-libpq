@@ -272,7 +272,7 @@ interface Libpq extends StrictEventEmitter<EventEmitter, LibpqEvents> {
   /**
    * Issues a request to cancel the currently executing query.
    *
-   * Returns an Error or string if cancellation fails.
+   * Returns a string if cancellation fails.
    */
   cancel(): true | string
 }
