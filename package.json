@@ -1,6 +1,6 @@
 {
   "name": "@pg-nano/libpq",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Low-level native bindings to PostgreSQL libpq",
   "type": "module",
   "main": "lib/libpq.js",
