@@ -11,15 +11,8 @@
       "import": "./lib/libpq.js"
     }
   },
-  "keywords": [
-    "postgres",
-    "libpq"
-  ],
-  "files": [
-    "lib",
-    "src",
-    "binding.gyp"
-  ],
+  "keywords": ["postgres", "libpq"],
+  "files": ["lib", "src/*.cc", "src/*.h", "binding.gyp"],
   "repository": {
     "type": "git",
     "url": "git://github.com/pg-nano/node-libpq.git"
