@@ -24,7 +24,7 @@
     "build": "tinyrun --names js,gyp 'pnpm -s build:js' 'pnpm -s build:gyp'",
     "build:js": "rimraf lib && tsc -p .",
     "build:gyp": "tsx scripts/build.ts",
-    "postinstall": "node-gyp rebuild",
+    "install": "node lib/postinstall.js",
     "prepare:clangd": "cd build && compiledb make -f binding.Makefile -n",
     "prepublishOnly": "pnpm -s build",
     "test": "mocha"
