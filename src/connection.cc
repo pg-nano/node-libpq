@@ -684,7 +684,7 @@ void Connection::on_io_writable(uv_poll_t* handle, int status, int revents) {
   TRACEF("Connection::on_io_writable:status %d\n", status);
   TRACEF("Connection::on_io_writable:revents %d\n", revents);
   if(revents & UV_WRITABLE) {
-    LOG("Connection::on_io_readable UV_WRITABLE");
+    LOG("Connection::on_io_writable UV_WRITABLE");
     Connection* self = (Connection*) handle->data;
     self->WriteStop();
     self->Emit("writable");

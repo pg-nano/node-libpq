@@ -242,8 +242,6 @@ interface Libpq extends StrictEventEmitter<EventEmitter, LibpqEvents> {
   stopRead(): void
 
   /**
-   * Starts the 'write ready' libuv socket listener.
-  /**
    * Reads waiting data from the socket.
    */
   consumeInput(): boolean
