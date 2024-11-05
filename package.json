@@ -33,7 +33,7 @@
   "license": "MIT",
   "dependencies": {
     "bindings": "1.5.0",
-    "nan": "2.19.0",
+    "nan": "2.22.0",
     "strict-event-emitter-types": "^2.0.0"
   },
   "devDependencies": {
