@@ -17,8 +17,15 @@ async function main() {
   }
 
   if (previousHash !== combinedHash) {
-    console.log('Source files have changed. Rebuilding...')
-    spawnSync('pnpm', ['node-gyp', 'rebuild'], { stdio: 'inherit' })
+    if (previousHash) {
+      console.log('Source files have changed. Rebuilding...')
+    }
+    const rebuildResult = spawnSync('pnpm', ['node-gyp', 'rebuild'], {
+      stdio: 'inherit',
+    })
+    if (rebuildResult.status !== 0) {
+      process.exit(rebuildResult.status ?? 1)
+    }
     spawnSync('pnpm', ['--no-bail', 'prepare:clangd'], { stdio: 'inherit' })
     await fs.writeFile(hashFile, combinedHash)
   } else {
