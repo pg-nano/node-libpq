@@ -72,7 +72,7 @@ interface Libpq extends StrictEventEmitter<EventEmitter, LibpqEvents> {
    */
   sendQueryParams(
     commandText: string,
-    parameters: readonly (string | number)[],
+    parameters: readonly (string | null)[],
   ): boolean
 
   /**
@@ -89,7 +89,7 @@ interface Libpq extends StrictEventEmitter<EventEmitter, LibpqEvents> {
    */
   sendQueryPrepared(
     statementName: string,
-    parameters: readonly (string | number)[],
+    parameters: readonly (string | null)[],
   ): boolean
 
   /**
