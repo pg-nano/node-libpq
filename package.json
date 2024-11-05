@@ -11,16 +11,8 @@
       "import": "./lib/libpq.js"
     }
   },
-  "keywords": [
-    "postgres",
-    "libpq"
-  ],
-  "files": [
-    "lib",
-    "src/*.cc",
-    "src/*.h",
-    "binding.gyp"
-  ],
+  "keywords": ["postgres", "libpq"],
+  "files": ["lib", "src/*.cc", "src/*.h", "binding.gyp", "postinstall.js"],
   "repository": {
     "type": "git",
     "url": "git://github.com/pg-nano/node-libpq.git"
@@ -32,7 +24,7 @@
     "build": "tinyrun --names js,gyp 'pnpm -s build:js' 'pnpm -s build:gyp'",
     "build:js": "rimraf lib && tsc -p .",
     "build:gyp": "tsx scripts/build.ts",
-    "install": "node lib/postinstall.js",
+    "install": "node postinstall.js",
     "prepare:clangd": "cd build && compiledb make -f binding.Makefile -n",
     "prepublishOnly": "pnpm -s build",
     "test": "mocha"
