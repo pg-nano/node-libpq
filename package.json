@@ -27,7 +27,8 @@
     "install": "node postinstall.js",
     "prepare:clangd": "cd build && compiledb make -f binding.Makefile -n",
     "prepublishOnly": "pnpm -s build",
-    "test": "mocha"
+    "test": "mocha",
+    "version": "biome format --write package.json"
   },
   "author": "Brian M. Carlson",
   "license": "MIT",
